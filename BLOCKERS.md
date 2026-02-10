@@ -62,14 +62,28 @@ pip install -r requirements.txt
 alembic upgrade head
 ```
 
+#### 5. frontend/.env 파일 생성 (필수)
+```bash
+cd frontend
+cp .env.example .env
+```
+
+기본값 사용 시 수정 불필요:
+```bash
+VITE_API_URL=http://localhost:8000
+```
+
 ### 대안 방안
 사용자 응답 전까지 진행 가능한 작업:
 - [x] Model CRUD API 코드 작성 (DB 연결 없이 코드만)
 - [x] Prompt CRUD API 코드 작성
-- [ ] Frontend 프로젝트 초기화
+- [x] Test Execution API 코드 작성
+- [x] Frontend 프로젝트 초기화
+- [x] Frontend API 클라이언트 작성
+- [ ] Frontend UI 컴포넌트 (진행 중)
 
 ### 상태
-**Blocked** - Google OAuth 설정 및 .env 파일 생성 필요
+**Partially Blocked** - 코드 작성은 계속 가능하나, 실제 테스트는 환경 설정 필요
 
 ---
 
@@ -79,5 +93,6 @@ alembic upgrade head
 |------|-----------|------|
 | Google OAuth 설정 | 필수 | ⏳ 대기 |
 | backend/.env 생성 | 필수 | ⏳ 대기 |
+| frontend/.env 생성 | 필수 | ⏳ 대기 |
 | Docker (PostgreSQL) | 필수 | ⏳ 대기 |
 | Alembic 마이그레이션 | 필수 | ⏳ 대기 |
