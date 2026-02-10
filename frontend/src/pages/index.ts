@@ -1,4 +1,5 @@
 export { LoginPage } from './LoginPage'
+export { AuthCallbackPage } from './AuthCallbackPage'
 export { DashboardPage } from './DashboardPage'
 export { ModelsPage } from './ModelsPage'
 export { PromptsPage } from './PromptsPage'

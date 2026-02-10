@@ -105,20 +105,32 @@
   - ModelsPage, PromptsPage, TestPage, HistoryPage
 - [x] 경로 별칭 설정 (@/*)
 
+#### Week 3 Day 2: Auth & API Integration
+- [x] OAuth 콜백 페이지 (AuthCallbackPage)
+  - 인증 완료 후 리다이렉트 처리
+  - 에러 핸들링
+- [x] API 클라이언트 (lib/api.ts)
+  - Fetch wrapper with credentials
+  - 자동 토큰 리프레시
+  - 타입 안전 API 함수들
+  - Models, Prompts, TestRuns API
+- [x] authStore 개선
+  - API 클라이언트 통합
+  - 로딩/에러 상태 관리
+
 ### 🚧 진행 중 (In Progress)
-- [ ] Week 3 Day 2: 인증 UI 완성
+- [ ] Week 3 Day 3: Model 관리 UI
 
 ### 📝 예정 (Planned)
-- [ ] OAuth 콜백 처리
-- [ ] API 클라이언트 설정
-- [ ] Model 관리 UI
+- [ ] Model 목록/생성/수정/삭제 UI
 - [ ] Prompt 관리 UI
 - [ ] 테스트 실행 UI
+- [ ] 테스트 히스토리 UI
 
 ### 🎯 오늘의 성과 (Today's Achievement)
-Week 1 (Backend) 완료! Week 3 Day 1 (Frontend Foundation) 완료!
+Week 1 (Backend) 완료! Week 3 Day 1-2 (Frontend) 완료!
 - Backend: Google OAuth, Model/Prompt/TestRun CRUD
-- Frontend: Vite + React + Tailwind + Shadcn 설정 완료
+- Frontend: Vite + React + Tailwind + Shadcn + API 통합 완료
 
 ### 🤔 이슈 및 결정사항 (Issues & Decisions)
 - ADR-001: FastAPI 선택 (async 지원, WebSocket, Pydantic 통합)

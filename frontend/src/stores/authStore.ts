@@ -1,34 +1,31 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { authApi, type User } from '@/lib/api'
 
-interface User {
-  id: string
-  email: string
-  name: string
-  picture?: string
-}
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 interface AuthState {
   user: User | null
   isAuthenticated: boolean
   isLoading: boolean
+  error: string | null
   setUser: (user: User | null) => void
   login: () => void
   logout: () => Promise<void>
   checkAuth: () => Promise<void>
+  clearError: () => void
 }
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       isAuthenticated: false,
       isLoading: true,
+      error: null,
 
       setUser: (user) => {
-        set({ user, isAuthenticated: !!user })
+        set({ user, isAuthenticated: !!user, error: null })
       },
 
       login: () => {
@@ -37,38 +34,39 @@ export const useAuthStore = create<AuthState>()(
 
       logout: async () => {
         try {
-          await fetch(`${API_BASE_URL}/api/v1/auth/logout`, {
-            method: 'POST',
-            credentials: 'include',
-          })
+          await authApi.logout()
+        } catch {
+          // Ignore errors, still clear local state
         } finally {
-          set({ user: null, isAuthenticated: false })
+          set({ user: null, isAuthenticated: false, error: null })
         }
       },
 
       checkAuth: async () => {
-        set({ isLoading: true })
-        try {
-          const response = await fetch(`${API_BASE_URL}/api/v1/auth/me`, {
-            credentials: 'include',
-          })
-
-          if (response.ok) {
-            const user = await response.json()
-            set({ user, isAuthenticated: true })
-          } else {
-            set({ user: null, isAuthenticated: false })
-          }
-        } catch {
-          set({ user: null, isAuthenticated: false })
-        } finally {
-          set({ isLoading: false })
+        // If already checking, don't do it again
+        if (get().isLoading === false && get().isAuthenticated) {
+          return
         }
+
+        set({ isLoading: true, error: null })
+        try {
+          const user = await authApi.me()
+          set({ user, isAuthenticated: true, isLoading: false })
+        } catch {
+          set({ user: null, isAuthenticated: false, isLoading: false })
+        }
+      },
+
+      clearError: () => {
+        set({ error: null })
       },
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({ user: state.user, isAuthenticated: state.isAuthenticated }),
+      partialize: (state) => ({
+        user: state.user,
+        isAuthenticated: state.isAuthenticated,
+      }),
     }
   )
 )

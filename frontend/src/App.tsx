@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { LoginPage } from '@/pages/LoginPage'
+import { AuthCallbackPage } from '@/pages/AuthCallbackPage'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { ModelsPage } from '@/pages/ModelsPage'
 import { PromptsPage } from '@/pages/PromptsPage'
@@ -9,7 +10,15 @@ import { HistoryPage } from '@/pages/HistoryPage'
 import { useAuthStore } from '@/stores/authStore'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const { isAuthenticated, isLoading } = useAuthStore()
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />
@@ -23,6 +32,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/auth/callback" element={<AuthCallbackPage />} />
         <Route
           path="/"
           element={
