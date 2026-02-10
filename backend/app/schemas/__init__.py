@@ -15,6 +15,15 @@ from app.schemas.prompt import (
     PromptListResponse,
     PromptVersionResponse,
 )
+from app.schemas.test_run import (
+    ModelTestConfig,
+    TestRunCreate,
+    TestRunResponse,
+    TestResultResponse,
+    TestRunListResponse,
+    TestRunSummary,
+    TestRunListSummaryResponse,
+)
 
 __all__ = [
     "UserCreate",
@@ -31,4 +40,11 @@ __all__ = [
     "PromptUpdate",
     "PromptListResponse",
     "PromptVersionResponse",
+    "ModelTestConfig",
+    "TestRunCreate",
+    "TestRunResponse",
+    "TestResultResponse",
+    "TestRunListResponse",
+    "TestRunSummary",
+    "TestRunListSummaryResponse",
 ]

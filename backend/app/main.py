@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
-from app.api.v1 import auth, models, prompts
+from app.api.v1 import auth, models, prompts, test_runs
 from app.config import get_settings
 
 settings = get_settings()
@@ -62,3 +62,4 @@ async def health_check():
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
 app.include_router(models.router, prefix="/api/v1/models", tags=["models"])
 app.include_router(prompts.router, prefix="/api/v1/prompts", tags=["prompts"])
+app.include_router(test_runs.router, prefix="/api/v1/test-runs", tags=["test-runs"])

@@ -34,25 +34,83 @@
 - [x] 인증 의존성 (api/deps.py)
 - [x] 인증 테스트 작성 (tests/test_auth.py)
 
+#### Week 1 Day 3: Model & Prompt CRUD APIs
+- [x] Model 스키마 (schemas/model.py)
+  - ModelCreate, ModelUpdate, ModelResponse
+  - ModelHealthCheck, ModelListResponse
+- [x] Model 서비스 (services/model.py)
+  - CRUD 기능 (생성, 조회, 수정, 삭제)
+  - 소프트 삭제 패턴 (is_active)
+  - 페이지네이션 지원
+  - 헬스 체크 기능 (httpx)
+- [x] Model 라우터 (api/v1/models.py)
+  - GET/POST /api/v1/models
+  - GET/PUT/DELETE /api/v1/models/{id}
+  - POST /api/v1/models/{id}/health
+- [x] Prompt 스키마 (schemas/prompt.py)
+  - PromptCreate, PromptUpdate, PromptResponse
+  - PromptVersionResponse, PromptListResponse
+- [x] Prompt 서비스 (services/prompt.py)
+  - CRUD 기능
+  - 자동 버전 관리 (content 변경 시)
+  - 롤백 기능
+  - 즐겨찾기 토글
+- [x] Prompt 라우터 (api/v1/prompts.py)
+  - GET/POST /api/v1/prompts
+  - GET/PUT/DELETE /api/v1/prompts/{id}
+  - POST /api/v1/prompts/{id}/favorite
+  - GET /api/v1/prompts/{id}/versions
+  - POST /api/v1/prompts/{id}/rollback
+- [x] 테스트 작성 (test_models.py, test_prompts.py)
+
+#### Week 1 Day 4-5: Test Execution API
+- [x] TestRun 스키마 (schemas/test_run.py)
+  - ModelTestConfig, TestRunCreate, TestRunResponse
+  - TestResultResponse, TestRunListResponse
+  - TestRunSummary, TestRunListSummaryResponse
+- [x] LLM 클라이언트 유틸리티 (utils/llm_client.py)
+  - vLLM/OpenAI compatible API 지원
+  - 비동기 HTTP 요청 (httpx)
+  - 타임아웃 및 에러 처리
+- [x] TestRun 서비스 (services/test_run.py)
+  - 테스트 생성 및 실행
+  - 다중 모델 동시 호출 (asyncio.gather)
+  - 결과 저장 및 조회
+  - 페이지네이션 지원
+- [x] TestRun 라우터 (api/v1/test_runs.py)
+  - POST /api/v1/test-runs (테스트 실행)
+  - GET /api/v1/test-runs (목록 조회)
+  - GET /api/v1/test-runs/{id} (상세 조회)
+  - DELETE /api/v1/test-runs/{id} (삭제)
+- [x] Model에 model_name 필드 추가 (API 모델 이름)
+- [x] 테스트 작성 (test_test_runs.py)
+
 ### 🚧 진행 중 (In Progress)
-- [ ] Week 1 Day 3: Model Management API
+- [ ] Week 2: Frontend 개발
 
 ### 📝 예정 (Planned)
-- [ ] Model CRUD 엔드포인트
-- [ ] Model 헬스 체크 기능
-- [ ] Prompt CRUD 엔드포인트
-- [ ] 버전 관리 시스템 구현
+- [ ] React + Vite 프로젝트 설정
+- [ ] TailwindCSS + Shadcn UI 설정
+- [ ] 라우팅 및 레이아웃
+- [ ] 인증 UI (Google 로그인)
 
 ### 🎯 오늘의 성과 (Today's Achievement)
-Week 1 Day 1-2 완료. FastAPI 백엔드 기반 + Google OAuth 2.0 인증 시스템 구현 완료.
+Week 1 완료! 백엔드 API 모두 완성:
+- Google OAuth 2.0 인증
+- Model/Prompt CRUD
+- Test Execution (vLLM 동기 호출)
 
 ### 🤔 이슈 및 결정사항 (Issues & Decisions)
 - ADR-001: FastAPI 선택 (async 지원, WebSocket, Pydantic 통합)
 - ADR-002: Google OAuth + JWT (httpOnly 쿠키, 1시간/7일 만료)
 - 테스트에 SQLite+aiosqlite 사용
+- Model은 소프트 삭제 패턴 사용 (is_active 플래그)
+- Prompt는 content 변경 시 자동 버전 생성
+- LLM 호출은 OpenAI compatible API 사용 (vLLM 호환)
+- 다중 모델 테스트는 asyncio.gather로 동시 실행
 
 ### ⏭️ 다음 작업 (Next Steps)
-1. Model CRUD API 구현
-2. Model 헬스 체크 기능
-3. Prompt CRUD API 구현
-4. ADR-003: 데이터베이스 스키마 설계 작성
+1. Week 2 Day 1: React + Vite + TailwindCSS 설정
+2. Week 2 Day 2: 인증 UI 구현
+3. Week 2 Day 3: 모델/프롬프트 관리 UI
+4. Week 2 Day 4-5: 테스트 실행 UI

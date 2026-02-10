@@ -10,6 +10,7 @@ class ModelBase(BaseModel):
     """Base model schema."""
 
     name: str
+    model_name: str | None = None  # Actual model name for API
     endpoint_url: str
     api_key: str | None = None
     metadata_: dict | None = None
@@ -25,6 +26,7 @@ class ModelUpdate(BaseModel):
     """Schema for updating a model."""
 
     name: str | None = None
+    model_name: str | None = None
     endpoint_url: str | None = None
     api_key: str | None = None
     is_active: bool | None = None
@@ -36,6 +38,7 @@ class ModelResponse(BaseModel):
 
     id: UUID
     name: str
+    model_name: str | None = None
     endpoint_url: str
     is_active: bool
     metadata_: dict | None = None

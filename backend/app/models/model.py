@@ -13,6 +13,9 @@ class Model(Base, UUIDMixin, TimestampMixin):
     __tablename__ = "models"
 
     name: Mapped[str] = mapped_column(String(255), nullable=False)
+    model_name: Mapped[str | None] = mapped_column(
+        String(255), nullable=True
+    )  # Actual model name for API (e.g., "meta-llama/Llama-2-7b-chat-hf")
     endpoint_url: Mapped[str] = mapped_column(String(512), nullable=False)
     api_key: Mapped[str | None] = mapped_column(Text, nullable=True)  # Encrypted
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
