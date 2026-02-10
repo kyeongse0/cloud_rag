@@ -85,24 +85,45 @@
 - [x] Model에 model_name 필드 추가 (API 모델 이름)
 - [x] 테스트 작성 (test_test_runs.py)
 
+#### Week 3 Day 1: Frontend Foundation
+- [x] ADR-003 작성: 프론트엔드 프레임워크 선택
+- [x] Vite + React + TypeScript 프로젝트 초기화
+- [x] Tailwind CSS v4 설정 (@tailwindcss/vite)
+- [x] Shadcn/ui 기본 컴포넌트 설정
+  - Button, Card, Input 컴포넌트
+  - cn 유틸리티 함수
+- [x] React Router v7 설정
+  - Protected Route 구현
+  - 라우팅 구조 설정
+- [x] Zustand 상태 관리 설정
+  - authStore (인증 상태)
+  - persist middleware
+- [x] MainLayout 컴포넌트 (사이드바 네비게이션)
+- [x] 페이지 컴포넌트 스캐폴딩
+  - LoginPage (Google 로그인 버튼)
+  - DashboardPage (대시보드)
+  - ModelsPage, PromptsPage, TestPage, HistoryPage
+- [x] 경로 별칭 설정 (@/*)
+
 ### 🚧 진행 중 (In Progress)
-- [ ] Week 2: Frontend 개발
+- [ ] Week 3 Day 2: 인증 UI 완성
 
 ### 📝 예정 (Planned)
-- [ ] React + Vite 프로젝트 설정
-- [ ] TailwindCSS + Shadcn UI 설정
-- [ ] 라우팅 및 레이아웃
-- [ ] 인증 UI (Google 로그인)
+- [ ] OAuth 콜백 처리
+- [ ] API 클라이언트 설정
+- [ ] Model 관리 UI
+- [ ] Prompt 관리 UI
+- [ ] 테스트 실행 UI
 
 ### 🎯 오늘의 성과 (Today's Achievement)
-Week 1 완료! 백엔드 API 모두 완성:
-- Google OAuth 2.0 인증
-- Model/Prompt CRUD
-- Test Execution (vLLM 동기 호출)
+Week 1 (Backend) 완료! Week 3 Day 1 (Frontend Foundation) 완료!
+- Backend: Google OAuth, Model/Prompt/TestRun CRUD
+- Frontend: Vite + React + Tailwind + Shadcn 설정 완료
 
 ### 🤔 이슈 및 결정사항 (Issues & Decisions)
 - ADR-001: FastAPI 선택 (async 지원, WebSocket, Pydantic 통합)
 - ADR-002: Google OAuth + JWT (httpOnly 쿠키, 1시간/7일 만료)
+- ADR-003: Vite + React + Tailwind + Shadcn + Zustand
 - 테스트에 SQLite+aiosqlite 사용
 - Model은 소프트 삭제 패턴 사용 (is_active 플래그)
 - Prompt는 content 변경 시 자동 버전 생성
@@ -110,7 +131,7 @@ Week 1 완료! 백엔드 API 모두 완성:
 - 다중 모델 테스트는 asyncio.gather로 동시 실행
 
 ### ⏭️ 다음 작업 (Next Steps)
-1. Week 2 Day 1: React + Vite + TailwindCSS 설정
-2. Week 2 Day 2: 인증 UI 구현
-3. Week 2 Day 3: 모델/프롬프트 관리 UI
-4. Week 2 Day 4-5: 테스트 실행 UI
+1. Week 3 Day 2: OAuth 콜백 처리 및 인증 완성
+2. Week 3 Day 3: Model 관리 UI
+3. Week 3 Day 4: Prompt 관리 UI
+4. Week 3 Day 5: Test 실행 UI
