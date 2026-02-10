@@ -30,6 +30,13 @@
 2. **방향성 확인 및 승인**
 3. **클라우드 인프라 구성** (배포 단계)
 4. **최종 배포**
+5. **환경 설정** (아래 항목들은 사용자만 할 수 있음):
+   - Google OAuth 설정 (Google Cloud Console)
+   - `.env` 파일 생성 및 실제 값 입력
+   - Docker 컨테이너 실행
+   - 데이터베이스 마이그레이션 실행
+
+> ⚠️ **중요**: 위 5번 항목들은 Claude가 대신할 수 없습니다. 코드 작성 후 반드시 BLOCKERS.md에 기록하세요.
 
 ---
 
@@ -97,25 +104,35 @@
 
 #### 1.3 막힌 부분 기록 (BLOCKERS.md)
 - **위치:** `/BLOCKERS.md`
-- **작성 시점:** 진행이 막혔을 때 (사용자 개입 필요)
+- **작성 시점:** 사용자 개입이 필요할 때 (**코드 작성 직후 즉시!**)
+- **⚠️ 반드시 BLOCKERS.md에 기록해야 하는 상황:**
+  - 🔑 **OAuth/API 키 설정 필요** (Google, OpenAI 등)
+  - 🗄️ **데이터베이스 실행 필요** (Docker, PostgreSQL 등)
+  - 📁 **`.env` 파일 생성 필요**
+  - 🚀 **서버/서비스 실행 필요**
+  - 💰 **유료 서비스 구독 필요**
+  - ❓ **비즈니스 결정 필요** (보관 기간, 제한 값 등)
+
 - **형식:**
   ```markdown
   # Blockers
-  
+
   ## [날짜: YYYY-MM-DD] - [제목]
-  
+
   ### 문제 설명
   무엇이 막혔는가?
-  
+
   ### 필요한 정보/결정
   사용자에게 필요한 것은?
-  
+
   ### 대안 방안
   사용자 응답 전까지 진행 가능한 다른 작업
-  
+
   ### 상태
   [Blocked | Resolved | Workaround Applied]
   ```
+
+> 💡 **원칙**: "이 코드가 실제로 실행되려면 사용자가 뭘 해야 하지?" 라고 항상 자문하세요.
 
 ---
 
@@ -524,8 +541,11 @@ git commit -m "feat(scope): description"
 # 2. 중요 결정사항 발생 시 ADR 작성
 # docs/decisions/ADR-XXX-title.md 생성
 
-# 3. 막히는 부분 발생 시 BLOCKERS.md 업데이트
+# 3. 사용자 개입 필요 시 BLOCKERS.md 즉시 업데이트
+# - OAuth 설정, .env 파일, DB 실행 등
 ```
+
+> ⚠️ **체크포인트**: 기능 구현 후 "이게 실행되려면?" 자문 → BLOCKERS.md 업데이트
 
 #### 종료 시 (Evening)
 ```bash
@@ -537,10 +557,14 @@ git push origin feature/[today-task]
 # - 진행 중인 작업
 # - 내일 할 작업
 
-# 3. 주요 기능 완료 시 PR 생성
+# 3. ⚠️ BLOCKERS.md 점검 (필수!)
+# - 사용자 액션이 필요한 항목이 모두 기록되었는지 확인
+# - OAuth, .env, DB, 서버 실행 등
+
+# 4. 주요 기능 완료 시 PR 생성
 # GitHub에서 Pull Request 생성
 
-# 4. develop에 병합 (자동 또는 수동)
+# 5. develop에 병합 (자동 또는 수동)
 git checkout develop
 git merge feature/[today-task]
 git push origin develop
@@ -948,8 +972,9 @@ git push
 
 ## Step 2: 초기 문서 생성
 1. PROGRESS.md 생성 및 첫 업데이트
-2. docs/decisions/ 폴더 생성
-3. backend/README.md, frontend/README.md 생성
+2. BLOCKERS.md 생성 (사용자 액션 필요 항목 기록용)
+3. docs/decisions/ 폴더 생성
+4. backend/README.md, frontend/README.md 생성
 
 ## Step 3: 프로젝트 구조 생성
 1. 위에 명시된 디렉토리 구조 생성
@@ -965,7 +990,10 @@ git push
 ## Step 5: Week 1 Day 1 작업 시작
 1. FastAPI 프로젝트 초기화
 2. PostgreSQL Docker Compose 설정
-3. backend/.env 파일 생성 (로컬에서만, Git에는 추가 X)
+3. ⚠️ BLOCKERS.md 업데이트 (사용자가 해야 할 것 기록):
+   - .env 파일 생성 방법
+   - Docker 실행 방법
+   - Google OAuth 설정 방법 (필요시)
 4. PROGRESS.md 업데이트
 ```
 
@@ -984,6 +1012,7 @@ git push
 
 ---
 
-**문서 버전:** 1.0  
-**작성일:** 2026-02-10  
+**문서 버전:** 1.1
+**작성일:** 2026-02-10
+**수정일:** 2025-02-10 (BLOCKERS.md 지침 강화)
 **다음 리뷰:** Phase 1 완료 시
