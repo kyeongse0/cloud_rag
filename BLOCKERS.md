@@ -80,10 +80,11 @@ VITE_API_URL=http://localhost:8000
 - [x] Test Execution API 코드 작성
 - [x] Frontend 프로젝트 초기화
 - [x] Frontend API 클라이언트 작성
-- [ ] Frontend UI 컴포넌트 (진행 중)
+- [x] Frontend UI 컴포넌트 (완료)
+- [x] Dashboard 통계 (완료)
 
 ### 상태
-**Partially Blocked** - 코드 작성은 계속 가능하나, 실제 테스트는 환경 설정 필요
+**Blocked** - 코드 작성 완료, OAuth 설정 후 통합 테스트 필요
 
 ---
 
