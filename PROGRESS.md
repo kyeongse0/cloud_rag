@@ -118,19 +118,37 @@
   - API 클라이언트 통합
   - 로딩/에러 상태 관리
 
+#### Week 3 Day 3: Model & Prompt Management UI
+- [x] UI 컴포넌트 추가
+  - Label, Textarea 컴포넌트
+  - Badge 컴포넌트 (success, warning, destructive variants)
+  - Dialog 컴포넌트 (React Context 기반)
+- [x] ModelsPage 구현
+  - 모델 목록 (카드 그리드)
+  - 모델 생성/수정 다이얼로그
+  - 헬스 체크 (latency 표시)
+  - 활성화/비활성화 토글
+  - 삭제 기능
+- [x] PromptsPage 구현
+  - 프롬프트 목록 (카드 그리드)
+  - 프롬프트 생성/수정 다이얼로그
+  - 태그 관리 (comma-separated)
+  - 즐겨찾기 토글
+  - 버전 히스토리 다이얼로그
+  - 롤백 기능
+
 ### 🚧 진행 중 (In Progress)
-- [ ] Week 3 Day 3: Model 관리 UI
+- [ ] Week 3 Day 4-5: Test Execution UI
 
 ### 📝 예정 (Planned)
-- [ ] Model 목록/생성/수정/삭제 UI
-- [ ] Prompt 관리 UI
-- [ ] 테스트 실행 UI
+- [ ] 테스트 실행 UI (모델 선택, 프롬프트 입력, 파라미터)
+- [ ] 테스트 결과 비교 뷰
 - [ ] 테스트 히스토리 UI
 
 ### 🎯 오늘의 성과 (Today's Achievement)
-Week 1 (Backend) 완료! Week 3 Day 1-2 (Frontend) 완료!
-- Backend: Google OAuth, Model/Prompt/TestRun CRUD
-- Frontend: Vite + React + Tailwind + Shadcn + API 통합 완료
+Week 3 Day 3 (Model & Prompt Management UI) 완료!
+- Model 관리: CRUD, 헬스 체크, 활성화/비활성화
+- Prompt 관리: CRUD, 버전 관리, 롤백, 즐겨찾기
 
 ### 🤔 이슈 및 결정사항 (Issues & Decisions)
 - ADR-001: FastAPI 선택 (async 지원, WebSocket, Pydantic 통합)
@@ -141,9 +159,9 @@ Week 1 (Backend) 완료! Week 3 Day 1-2 (Frontend) 완료!
 - Prompt는 content 변경 시 자동 버전 생성
 - LLM 호출은 OpenAI compatible API 사용 (vLLM 호환)
 - 다중 모델 테스트는 asyncio.gather로 동시 실행
+- Dialog 컴포넌트: Radix 대신 React Context 기반 커스텀 구현
 
 ### ⏭️ 다음 작업 (Next Steps)
-1. Week 3 Day 2: OAuth 콜백 처리 및 인증 완성
-2. Week 3 Day 3: Model 관리 UI
-3. Week 3 Day 4: Prompt 관리 UI
-4. Week 3 Day 5: Test 실행 UI
+1. Week 3 Day 4-5: Test 실행 UI
+2. Week 4: 테스트 히스토리 및 결과 비교
+3. Week 5: 대시보드 통계 및 마무리
