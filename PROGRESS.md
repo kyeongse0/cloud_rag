@@ -155,18 +155,27 @@
   - 삭제 기능
   - 결과 비교 뷰 (모델별 응답 비교)
 
+#### Week 4: Dashboard & Polish
+- [x] Dashboard 통계 구현
+  - 실시간 API 데이터 연동
+  - Stats 카드 (Models, Prompts, Tests 카운트)
+  - 최근 테스트 목록 (최대 5개)
+  - Quick Start 가이드
+  - 각 섹션 링크 연결
+
 ### 🚧 진행 중 (In Progress)
-- [ ] Week 4: Dashboard 통계 및 마무리
+- [ ] OAuth 설정 대기 (사용자)
+- [ ] 인증 우회 코드 원복
 
 ### 📝 예정 (Planned)
-- [ ] Dashboard 통계 (총 테스트 수, 모델 수, 프롬프트 수)
-- [ ] 최근 테스트 결과 요약
-- [ ] E2E 테스트 및 버그 수정
+- [ ] E2E 통합 테스트
+- [ ] 배포 준비 (Docker 빌드)
 
 ### 🎯 오늘의 성과 (Today's Achievement)
-Week 3 Day 4-5 (Test Execution & History UI) 완료!
-- Test 실행: 모델 선택, 파라미터 조절, 결과 표시
-- History: 테스트 히스토리 목록, 상세 보기, 결과 비교
+Week 4 Dashboard 완료!
+- 실시간 통계 카드 (클릭 시 해당 페이지로 이동)
+- 최근 테스트 목록
+- Quick Start 가이드
 
 ### 🤔 이슈 및 결정사항 (Issues & Decisions)
 - ADR-001: FastAPI 선택 (async 지원, WebSocket, Pydantic 통합)
