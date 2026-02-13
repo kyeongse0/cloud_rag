@@ -10,7 +10,14 @@ import { HistoryPage } from '@/pages/HistoryPage'
 import { useAuthStore } from '@/stores/authStore'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  // 개발 환경에서 인증 우회 (VITE_DEV_BYPASS_AUTH=true)
+  const DEV_BYPASS_AUTH = import.meta.env.VITE_DEV_BYPASS_AUTH === 'true'
+
   const { isAuthenticated, isLoading } = useAuthStore()
+
+  if (DEV_BYPASS_AUTH) {
+    return <>{children}</>
+  }
 
   if (isLoading) {
     return (

@@ -5,51 +5,44 @@ services:
     image: postgres:16-alpine
     container_name: llm_platform_db
     environment:
-      POSTGRES_DB: llm_platform
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-    ports:
-      - "5432:5432"
+      POSTGRES_DB: ${POSTGRES_DB:-llm_platform}
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U admin -d llm_platform"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-admin} -d ${POSTGRES_DB:-llm_platform}"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   backend:
     build:
       context: ./backend
-      target: dev
+      target: prod
     container_name: llm_platform_backend
-    volumes:
-      - ./backend:/app
-    ports:
-      - "8000:8000"
     environment:
-      DATABASE_URL: postgresql+asyncpg://admin:password@postgres:5432/llm_platform
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-admin}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-llm_platform}
     env_file:
       - ./backend/.env
     depends_on:
       postgres:
         condition: service_healthy
+    restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
-      target: dev
+      target: prod
     container_name: llm_platform_frontend
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
     ports:
-      - "5173:5173"
+      - "80:80"
     environment:
-      VITE_API_URL: http://localhost:8000
-      VITE_DEV_BYPASS_AUTH: "true"
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
     depends_on:
       - backend
+    restart: unless-stopped
 
 volumes:
   postgres_data:
