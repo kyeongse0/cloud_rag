@@ -163,19 +163,26 @@
   - Quick Start 가이드
   - 각 섹션 링크 연결
 
+#### Week 5: Deployment Configuration
+- [x] Docker 설정
+  - Backend Dockerfile (dev/prod 멀티스테이지)
+  - Frontend Dockerfile (dev/prod with nginx)
+  - nginx.conf (SPA 라우팅, API 프록시)
+  - docker-compose.yml (개발용)
+  - docker-compose.prod.yml (프로덕션용)
+- [x] 인증 우회 환경변수화 (VITE_DEV_BYPASS_AUTH)
+
 ### 🚧 진행 중 (In Progress)
 - [ ] OAuth 설정 대기 (사용자)
-- [ ] 인증 우회 코드 원복
 
 ### 📝 예정 (Planned)
-- [ ] E2E 통합 테스트
-- [ ] 배포 준비 (Docker 빌드)
+- [ ] E2E 통합 테스트 (OAuth 설정 후)
+- [ ] 실제 배포 테스트
 
 ### 🎯 오늘의 성과 (Today's Achievement)
-Week 4 Dashboard 완료!
-- 실시간 통계 카드 (클릭 시 해당 페이지로 이동)
-- 최근 테스트 목록
-- Quick Start 가이드
+Week 5 배포 설정 완료!
+- Docker 멀티스테이지 빌드 (개발/프로덕션)
+- 인증 우회를 환경변수로 제어 가능
 
 ### 🤔 이슈 및 결정사항 (Issues & Decisions)
 - ADR-001: FastAPI 선택 (async 지원, WebSocket, Pydantic 통합)
@@ -190,6 +197,6 @@ Week 4 Dashboard 완료!
 - Slider/Checkbox/Select: 커스텀 구현 (의존성 최소화)
 
 ### ⏭️ 다음 작업 (Next Steps)
-1. Week 4: Dashboard 통계 구현
-2. E2E 테스트 작성 (Playwright)
-3. 배포 준비 (Docker, 환경 변수)
+1. OAuth 설정 완료 (사용자)
+2. 통합 테스트 (Backend + Frontend)
+3. 실제 LLM 모델 연동 테스트
